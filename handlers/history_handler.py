@@ -4,8 +4,10 @@ from aiogram.fsm.context import FSMContext
 import keyboards
 from states import HistoryStates
 import consts
+from handlers.history_handlers import history1, history2, history3
 
 router = Router()
+router.include_routers(history1.router, history2.router, history3.router)
 
 
 @router.message(HistoryStates.setting_history, F.text == "Назад")
@@ -16,10 +18,16 @@ async def escape_to_menu(msg: Message, state: FSMContext):
 
 @router.message(HistoryStates.setting_history, F.text.in_(consts.HISTORIES))
 async def setting_history(msg: Message, state: FSMContext):
-    await state.update_data(history=msg)
+    num = consts.HISTORIES.index(msg.text) + 1
+    await state.update_data(history=num)
     await msg.answer(f"Выбрано {msg.text}. Для начала нажмите Начать",
                      reply_markup=keyboards.preparing_for_history_kb())
     await state.set_state(HistoryStates.preparing_for_history)
+
+
+@router.message(HistoryStates.preparing_for_history, F.text == "Начать")
+async def start_history(msg: Message, state: FSMContext):
+    await state.set_state(eval(f"HistoryStates.history{(await state.get_data())['history']}_passing"))
 
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")

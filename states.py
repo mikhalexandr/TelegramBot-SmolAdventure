@@ -5,6 +5,10 @@ class HistoryStates(StatesGroup):
     setting_history = State()
     preparing_for_history = State()
 
+    history1_passing = State()
+    history2_passing = State()
+    history3_passing = State()
+
 
 class QuestsStates(StatesGroup):
     setting_quest = State()

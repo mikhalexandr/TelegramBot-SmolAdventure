@@ -17,7 +17,8 @@ async def escape_to_menu(msg: Message, state: FSMContext):
 
 @router.message(QuestsStates.setting_quest, F.text.in_(consts.QUESTS))
 async def setting_quest(msg: Message, state: FSMContext):
-    await state.update_data(quest=msg.text)
+    num = consts.QUESTS.index(msg.text) + 1
+    await state.update_data(quest=num)
     await msg.answer(f"Выбран квест {msg.text}! Теперь присоединись к команде или создай новую",
                      reply_markup=keyboards.set_team_kb())
     await state.set_state(QuestsStates.setting_team)
