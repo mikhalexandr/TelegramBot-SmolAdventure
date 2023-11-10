@@ -10,6 +10,9 @@ HELP_DICT = {
 }
 
 
+QUESTS = ["Квест1", "Квест2", "Квест3"]
+
+
 def get_help_message():
     res = "Функции бота РЕШУ ЕГЭ:\n"
     for key in HELP_DICT:
