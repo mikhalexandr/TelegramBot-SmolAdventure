@@ -54,7 +54,7 @@ async def escape_to_history_menu(msg: Message, state: FSMContext):
 async def start_quiz(msg: Message, state: FSMContext):
     num = (await state.get_data())['history']
     await state.set_state(HistoryStates.quiz_passing)
-    await state.update_data(quiz=iter(eval(f"quiz{num}")))
+    await state.update_data(quiz=iter(eval(f"quiz{num}")), answers=[])
     await next_quiz_question(msg, state)
 
 
@@ -68,13 +68,24 @@ async def next_quiz_question(msg: Message, state: FSMContext):
         await state.update_data(answer=right)
         await msg.answer(text, reply_markup=keyboards.answer_quiz_kb())
     except StopIteration:
-        await msg.answer("Результат")
+        text = "Результат:\n"
+        score = 0
+        for right, usr in (await state.get_data())['answers']:
+            if right == usr:
+                s = ":)"
+                score += 1
+            else:
+                s = ":("
+            s += f"Ваш ответ: {usr}; правильный ответ: {right}\n"
+            text += s
+        text = text[:10] + f" {score * 10}%" + text[10:]
+        await msg.answer(text)
 
 
 @router.message(HistoryStates.quiz_passing, F.text.in_(("А", "Б", "В", "Г")))
 async def check_answer(msg: Message, state: FSMContext):
-    if msg.text == (await state.get_data())['answer']:
-        await msg.answer("Правильно!")
-    else:
-        await msg.answer(f"Неверно! Правильный ответ: {(await state.get_data())['answer']}")
+    ans = (await state.get_data())['answer']
+    sp = (await state.get_data())['answers']
+    sp.append((ans, msg.text))
+    await state.update_data(answers=sp)
     await next_quiz_question(msg, state)
