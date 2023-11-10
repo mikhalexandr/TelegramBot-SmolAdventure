@@ -7,6 +7,8 @@ class HistoryStates(StatesGroup):
     setting_history = State()
     preparing_for_history = State()
     history_passing = State()
+    quiz_passing_preparing = State()
+    quiz_passing = State()
 
 
 class QuestsStates(StatesGroup):

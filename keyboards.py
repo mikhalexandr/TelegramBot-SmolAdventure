@@ -47,3 +47,18 @@ def preparing_for_history_kb():
 def next_kb():
     kb = [KeyboardButton(text="Далее")]
     return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+
+def lets_go_kb():
+    kb = [KeyboardButton(text="Вперёд!")]
+    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+
+def answer_quiz_kb():
+    builder = ReplyKeyboardBuilder()
+    for i in "абвг":
+        builder.add(KeyboardButton(text=i))
+    builder.adjust(2)
+    return builder.as_markup(resize_keyboard=True)
+
+
