@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
+import start_handler
 import keyboards
 from states import QuestsStates
 import consts
@@ -9,10 +10,16 @@ import db
 router = Router()
 
 
+@router.message(QuestsStates.setting_quest, F.text == "Назад")
+async def escape_to_menu(msg: Message, state: FSMContext):
+    await state.clear()
+    await msg.answer("Сделайте выбор...", reply_markup=keyboards.create_start_kb())
+
+
 @router.message(QuestsStates.setting_quest, F.text.in_(consts.QUESTS))
 async def setting_quest(msg: Message, state: FSMContext):
     await state.update_data(quest=msg.text)
-    await msg.answer(f"Выбран квест {msg.text}! Теперь введи имя команды или создай новую",
+    await msg.answer(f"Выбран квест {msg.text}! Теперь присоединись к команде или создай новую",
                      reply_markup=keyboards.set_team_kb())
     await state.set_state(QuestsStates.setting_team)
 
@@ -51,3 +58,9 @@ async def add_to_team_and_prepare(msg: Message, state: FSMContext):
         await state.set_state(QuestsStates.preparing_for_quest)
         await msg.answer(f"Ты успешно присоединился к команде {msg.text}. Нажми Начать квест, чтобы начать квест",
                          reply_markup=keyboards.preparing_for_quest_kb())
+
+
+@router.message(QuestsStates.setting_team, F.text == "Назад")
+async def escape_to_team_menu(msg: Message, state: FSMContext):
+    await start_handler.quests(msg, state)
+

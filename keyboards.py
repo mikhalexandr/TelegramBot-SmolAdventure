@@ -13,12 +13,14 @@ def setting_quest_kb():
     for i in consts.QUESTS:
         builder.add(KeyboardButton(text=i))
     builder.adjust(3)
+    builder.row(KeyboardButton(text="Назад"))
     return builder.as_markup(resize_keyboard=True)
 
 
 def set_team_kb():
-    kb = [KeyboardButton(text="Создать команду"), KeyboardButton(text="Присоединиться к команде")]
-    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+    kb = [[KeyboardButton(text="Создать команду"), KeyboardButton(text="Присоединиться к команде")],
+          [KeyboardButton(text="Назад")]]
+    return ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
 
 
 def preparing_for_quest_kb():
