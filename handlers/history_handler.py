@@ -7,6 +7,7 @@ import keyboards
 from states import HistoryStates
 import consts
 from handlers.history_handlers import history1, history2, history3
+from handlers.history_handlers.texts import text1, text2, text3
 
 router = Router()
 router.include_routers(history1.router, history2.router, history3.router)
@@ -29,8 +30,10 @@ async def setting_history(msg: Message, state: FSMContext):
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Начать")
 async def start_history(msg: Message, state: FSMContext):
-    await state.set_state(eval(f"HistoryStates.history{(await state.get_data())['history']}_passing"))
-    await eval(f"history{(await state.get_data())['history']}").next_information(msg, state)
+    num = (await state.get_data())['history']
+    await state.set_state(eval(f"HistoryStates.history{num}_passing"))
+    await state.update_data(text=iter(eval(f"text{num}")))
+    await eval(f"history{num}").next_information(msg, state)
 
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")

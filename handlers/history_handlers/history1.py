@@ -5,7 +5,6 @@ from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from states import HistoryStates
 import keyboards
-from handlers.history_handlers.texts import text1
 
 router = Router()
 
@@ -13,7 +12,8 @@ router = Router()
 @router.message(HistoryStates.history1_passing, F.text == "Далее")
 async def next_information(msg: Message, state: FSMContext):
     try:
-        await msg.answer(next(text1), reply_markup=keyboards.next_kb())
+        text = (await state.get_data())["text"]
+        await msg.answer(next(text), reply_markup=keyboards.next_kb())
     except StopIteration:
         await msg.answer("Рассказ завершен. Пожалуйста, пройди тест!")
 
