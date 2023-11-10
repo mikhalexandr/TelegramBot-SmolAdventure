@@ -2,7 +2,8 @@ from aiogram.fsm.state import State, StatesGroup
 
 
 class HistoryStates(StatesGroup):
-    pass
+    setting_history = State()
+    preparing_for_history = State()
 
 
 class QuestsStates(StatesGroup):

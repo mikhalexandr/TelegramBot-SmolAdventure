@@ -16,7 +16,8 @@ async def start(msg: Message):
 
 @router.message(F.text == "История Смоленска")
 async def history(msg: Message, state: FSMContext):
-    await msg.answer("Здесь будет история Смоленска", reply_markup=keyboards.ReplyKeyboardRemove())
+    await msg.answer("Пожалуйста, выбери предмет изучения", reply_markup=keyboards.setting_history_kb())
+    await state.set_state(states.HistoryStates.setting_history)
 
 
 @router.message(F.text == "Квесты")

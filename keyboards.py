@@ -17,6 +17,15 @@ def setting_quest_kb():
     return builder.as_markup(resize_keyboard=True)
 
 
+def setting_history_kb():
+    builder = ReplyKeyboardBuilder()
+    for i in consts.HISTORIES:
+        builder.add(KeyboardButton(text=i))
+    builder.adjust(3)
+    builder.row(KeyboardButton(text="Назад"))
+    return builder.as_markup(resize_keyboard=True)
+
+
 def set_team_kb():
     kb = [[KeyboardButton(text="Создать команду"), KeyboardButton(text="Присоединиться к команде")],
           [KeyboardButton(text="Назад")]]
@@ -26,3 +35,8 @@ def set_team_kb():
 def preparing_for_quest_kb():
     kb = [KeyboardButton(text="Начать квест")]
     return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+
+def preparing_for_history_kb():
+    kb = [[KeyboardButton(text="Начать")], [KeyboardButton(text="Назад")]]
+    return ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
