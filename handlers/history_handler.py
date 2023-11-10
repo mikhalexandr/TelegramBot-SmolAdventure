@@ -8,8 +8,15 @@ from states import HistoryStates
 import consts
 import emoji
 from handlers.history_texts import *
+from handlers.history_images import images1
 
 router = Router()
+
+
+@router.message(F.photo)
+async def f(msg: Message):
+    id = msg.photo[-1].file_id
+    print(id)
 
 
 @router.message(HistoryStates.quiz_ending, F.text == "Завершить!")

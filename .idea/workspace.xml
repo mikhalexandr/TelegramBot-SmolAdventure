@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f7686d9-8f16-4ec6-932c-633e249ef72f" name="Changes" comment="мяу">
-      <change beforePath="$PROJECT_DIR$/base.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/base.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/history_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/history_texts.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_texts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards.py" afterDir="false" />
-    </list>
+    <list default="true" id="6f7686d9-8f16-4ec6-932c-633e249ef72f" name="Changes" comment="мяу" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +80,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699656766492</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="мяу">
+      <option name="closed" value="true" />
+      <created>1699657280494</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699657280494</updated>
+    </task>
+    <task id="LOCAL-00007" summary="мяу">
+      <option name="closed" value="true" />
+      <created>1699657401217</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699657401217</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
