@@ -21,7 +21,7 @@ async def escape_to_menu(msg: Message, state: FSMContext):
 async def setting_history(msg: Message, state: FSMContext):
     num = consts.HISTORIES.index(msg.text) + 1
     await state.update_data(history=num)
-    await msg.answer(f"Выбрано {msg.text}. Для начала нажмите Начать",
+    await msg.answer(f"Выбрано {msg.text}. Для старта нажмите Начать",
                      reply_markup=keyboards.preparing_for_history_kb())
     await state.set_state(HistoryStates.preparing_for_history)
 
