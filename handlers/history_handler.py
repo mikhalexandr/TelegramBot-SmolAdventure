@@ -64,14 +64,14 @@ async def next_quiz_question(msg: Message, state: FSMContext):
         question = next(quiz)
         answers = eval(f"quiz{(await state.get_data())['history']}")[question]
         right = answers[4]
-        text = f"{question}\n{'a. ' + answers[0]}\n{'б. ' + answers[1]}\n{'в. ' + answers[2]}\n{'г. ' + answers[3]}"
+        text = f"{question}\n{'А. ' + answers[0]}\n{'Б. ' + answers[1]}\n{'В. ' + answers[2]}\n{'Г. ' + answers[3]}"
         await state.update_data(answer=right)
         await msg.answer(text, reply_markup=keyboards.answer_quiz_kb())
     except StopIteration:
         await msg.answer("Результат")
 
 
-@router.message(HistoryStates.quiz_passing, F.text.in_(("а", "б", "в", "г")))
+@router.message(HistoryStates.quiz_passing, F.text.in_(("А", "Б", "В", "Г")))
 async def check_answer(msg: Message, state: FSMContext):
     if msg.text == (await state.get_data())['answer']:
         await msg.answer("Правильно!")
