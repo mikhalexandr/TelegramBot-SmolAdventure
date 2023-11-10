@@ -18,7 +18,7 @@ GUIDES_DICT = {
     "sis2hello": "CAACAgIAAxkBAAEB5yFlTi-N77aUWDKzpk7y9vvlqunPbwACRjYAAhINcUrlHyQwEHnppjME"
 }
 
-QUESTS = ["Квест1", "Квест2", "Квест3"]
+QUESTS = ["Тайны Наполеона", "Творческие личности", "ВелоРеадовка"]
 
 HISTORIES = ["А. Т. Твардовский", "М. И. Глинка", "Ю. А. Гагарин"]
 
