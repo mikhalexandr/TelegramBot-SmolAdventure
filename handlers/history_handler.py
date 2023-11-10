@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 import keyboards
 from states import HistoryStates
 import consts
+import emoji
 from handlers.history_texts import *
 
 router = Router()
@@ -72,11 +73,11 @@ async def next_quiz_question(msg: Message, state: FSMContext):
         score = 0
         for right, usr in (await state.get_data())['answers']:
             if right == usr:
-                s = ":)"
+                s = emoji.emojize(":check_mark_button:")
                 score += 1
             else:
-                s = ":("
-            s += f"Ваш ответ: {usr}; правильный ответ: {right}\n"
+                s = emoji.emojize(":cross_mark:")
+            s += f"  Ваш ответ:  {usr}  |  правильный ответ:  {right}\n"
             text += s
         text = text[:10] + f" {score * 10}%" + text[10:]
         await msg.answer(text)
