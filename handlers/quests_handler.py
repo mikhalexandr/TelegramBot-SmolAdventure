@@ -50,4 +50,4 @@ async def add_to_team_and_prepare(msg: Message, state: FSMContext):
     else:
         await state.set_state(QuestsStates.preparing_for_quest)
         await msg.answer(f"Ты успешно присоединился к команде {msg.text}. Нажми Начать квест, чтобы начать квест",
-            reply_markup=keyboards.preparing_for_quest_kb())
+                         reply_markup=keyboards.preparing_for_quest_kb())
