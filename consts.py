@@ -1,3 +1,5 @@
+# константы
+
 START_MESSAGE = "Здравствуй, дорогой пользователь! Бот создан для того, чтобы вы лучше узнали родной город"
 
 HELP_DICT = {
@@ -22,7 +24,7 @@ HISTORIES = ["История1", "История2", "История3"]
 
 
 def get_help_message():
-    res = "Функции бота РЕШУ ЕГЭ:\n"
+    res = "Функции бота SmolAdventure | История Смоленска и квесты по городу:\n"
     for key in HELP_DICT:
         res += f"/{key} - {HELP_DICT[key]}\n"
     return res

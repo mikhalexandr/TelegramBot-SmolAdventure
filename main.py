@@ -1,3 +1,5 @@
+# основной файл программы, из которого запускается бот
+
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 import asyncio
