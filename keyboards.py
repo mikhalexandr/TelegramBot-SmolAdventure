@@ -42,3 +42,8 @@ def preparing_for_quest_kb():
 def preparing_for_history_kb():
     kb = [[KeyboardButton(text="Начать")], [KeyboardButton(text="Назад")]]
     return ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
+
+
+def next_kb():
+    kb = [KeyboardButton(text="Далее")]
+    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)

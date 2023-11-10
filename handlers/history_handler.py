@@ -30,6 +30,7 @@ async def setting_history(msg: Message, state: FSMContext):
 @router.message(HistoryStates.preparing_for_history, F.text == "Начать")
 async def start_history(msg: Message, state: FSMContext):
     await state.set_state(eval(f"HistoryStates.history{(await state.get_data())['history']}_passing"))
+    await eval(f"history{(await state.get_data())['history']}").next_information(msg, state)
 
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")
