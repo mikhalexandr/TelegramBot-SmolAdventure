@@ -1,7 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-import start_handler
 import keyboards
 from states import QuestsStates
 import consts
@@ -62,5 +61,6 @@ async def add_to_team_and_prepare(msg: Message, state: FSMContext):
 
 @router.message(QuestsStates.setting_team, F.text == "Назад")
 async def escape_to_team_menu(msg: Message, state: FSMContext):
-    await start_handler.quests(msg, state)
+    await msg.answer("Пожалуйста, выбери квест", reply_markup=keyboards.setting_quest_kb())
+    await state.set_state(QuestsStates.setting_quest)
 
