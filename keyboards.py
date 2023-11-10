@@ -56,7 +56,7 @@ def lets_go_kb():
 
 def answer_quiz_kb():
     builder = ReplyKeyboardBuilder()
-    for i in "АБВГ":
+    for i in "ABCD":
         builder.add(KeyboardButton(text=i))
     builder.adjust(2)
     return builder.as_markup(resize_keyboard=True)

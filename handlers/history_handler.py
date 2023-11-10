@@ -65,7 +65,7 @@ async def next_quiz_question(msg: Message, state: FSMContext):
         question = next(quiz)
         answers = eval(f"quiz{(await state.get_data())['history']}")[question]
         right = answers[4]
-        text = f"{question}\n{'А. ' + answers[0]}\n{'Б. ' + answers[1]}\n{'В. ' + answers[2]}\n{'Г. ' + answers[3]}"
+        text = f"{question}\n{'A. ' + answers[0]}\n{'B. ' + answers[1]}\n{'C. ' + answers[2]}\n{'D. ' + answers[3]}"
         await state.update_data(answer=right)
         await msg.answer(text, reply_markup=keyboards.answer_quiz_kb())
     except StopIteration:
@@ -83,7 +83,7 @@ async def next_quiz_question(msg: Message, state: FSMContext):
         await msg.answer(text)
 
 
-@router.message(HistoryStates.quiz_passing, F.text.in_(("А", "Б", "В", "Г")))
+@router.message(HistoryStates.quiz_passing, F.text.in_(("A", "B", "C", "D")))
 async def check_answer(msg: Message, state: FSMContext):
     ans = (await state.get_data())['answer']
     sp = (await state.get_data())['answers']
