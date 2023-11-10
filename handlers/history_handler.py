@@ -6,11 +6,9 @@ from aiogram.fsm.context import FSMContext
 import keyboards
 from states import HistoryStates
 import consts
-from handlers.history_handlers import history1, history2, history3
-from handlers.history_handlers.texts import text1, text2, text3
+from handlers.history_texts import *
 
 router = Router()
-router.include_routers(history1.router, history2.router, history3.router)
 
 
 @router.message(HistoryStates.setting_history, F.text == "Назад")
@@ -31,9 +29,18 @@ async def setting_history(msg: Message, state: FSMContext):
 @router.message(HistoryStates.preparing_for_history, F.text == "Начать")
 async def start_history(msg: Message, state: FSMContext):
     num = (await state.get_data())['history']
-    await state.set_state(eval(f"HistoryStates.history{num}_passing"))
+    await state.set_state(HistoryStates.history_passing)
     await state.update_data(text=iter(eval(f"text{num}")))
-    await eval(f"history{num}").next_information(msg, state)
+    await next_information(msg, state)
+
+
+@router.message(HistoryStates.history_passing, F.text == "Далее")
+async def next_information(msg: Message, state: FSMContext):
+    try:
+        text = (await state.get_data())["text"]
+        await msg.answer(next(text), reply_markup=keyboards.next_kb())
+    except StopIteration:
+        await msg.answer("Рассказ завершен. Пожалуйста, пройди тест!")
 
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")
