@@ -1,3 +1,4 @@
+
 # основной файл программы, из которого запускается бот
 
 from aiogram import Bot, Dispatcher

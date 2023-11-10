@@ -9,6 +9,7 @@ class HistoryStates(StatesGroup):
     history_passing = State()
     quiz_passing_preparing = State()
     quiz_passing = State()
+    quiz_ending = State()
 
 
 class QuestsStates(StatesGroup):

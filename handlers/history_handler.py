@@ -12,6 +12,7 @@ from handlers.history_texts import *
 router = Router()
 
 
+@router.message(HistoryStates.quiz_ending, F.text == "Завершить!")
 @router.message(HistoryStates.setting_history, F.text == "Назад")
 async def escape_to_menu(msg: Message, state: FSMContext):
     await state.clear()
@@ -80,7 +81,8 @@ async def next_quiz_question(msg: Message, state: FSMContext):
             s += f"  Ваш ответ:  {usr}  |  правильный ответ:  {right}\n"
             text += s
         text = text[:10] + f" {score * 10}%" + text[10:]
-        await msg.answer(text)
+        await msg.answer(text, reply_markup=keyboards.last_kb())
+        await state.set_state(HistoryStates.quiz_ending)
 
 
 @router.message(HistoryStates.quiz_passing, F.text.in_(("A", "B", "C", "D")))
@@ -90,3 +92,4 @@ async def check_answer(msg: Message, state: FSMContext):
     sp.append((ans, msg.text))
     await state.update_data(answers=sp)
     await next_quiz_question(msg, state)
+

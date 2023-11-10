@@ -62,3 +62,8 @@ def answer_quiz_kb():
     return builder.as_markup(resize_keyboard=True)
 
 
+def last_kb():
+    kb = [KeyboardButton(text="Завершить!")]
+    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+
