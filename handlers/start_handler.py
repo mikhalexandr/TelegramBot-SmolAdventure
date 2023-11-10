@@ -10,3 +10,8 @@ router = Router()
 async def start(msg: Message):
     await msg.answer(consts.START_MESSAGE)
 
+
+@router.message(Command("help"))
+async def help(msg: Message):
+    await msg.answer(consts.get_help_message())
+
