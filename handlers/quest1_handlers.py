@@ -5,7 +5,6 @@ import datetime
 import keyboards
 from states import QuestsStates
 import consts
-import emoji
 import db
 
 sv1 = "AgACAgIAAxkBAAIb9WVPB57vdNmrFHe-KaRT1qgSsON-AAI1yjEb-qt5SiYZiIzqhf2QAQADAgADeQADMwQ"
@@ -53,11 +52,12 @@ async def incorrect_task_1(msg: Message, state: FSMContext):
     start_time = (await state.get_data())["start_time"]
     if not tries:
         await state.update_data(start_time=start_time - datetime.timedelta(minutes=10))
+        await msg.answer("Тебе начислено 10 штрафных минут!")
         await start_2_task(msg, state)
         return
     await state.update_data(tries=tries - 1)
     await state.update_data(start_time=start_time - datetime.timedelta(minutes=5))
-    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а)")
+    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а). Кстати, тебе начислилось 5 штрафных минут")
     await msg.answer_sticker(consts.GUIDES_DICT["sis2false"])
 
 
@@ -89,11 +89,12 @@ async def incorrect_task_2(msg: Message, state: FSMContext):
     start_time = (await state.get_data())["start_time"]
     if not tries:
         await state.update_data(start_time=start_time - datetime.timedelta(minutes=10))
+        await msg.answer("Тебе начислено 10 штрафных минут!")
         await start_3_task(msg, state)
         return
     await state.update_data(tries=tries - 1)
     await state.update_data(start_time=start_time - datetime.timedelta(minutes=5))
-    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а)")
+    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а). Кстати, тебе начислилось 5 штрафных минут")
     await msg.answer_sticker(consts.GUIDES_DICT["sis2false"])
 
 
@@ -110,12 +111,13 @@ async def incorrect_task_3(msg: Message, state: FSMContext):
     start_time = (await state.get_data())["start_time"]
     if not tries:
         await state.update_data(start_time=start_time - datetime.timedelta(minutes=10))
+        await msg.answer("Тебе начислено 10 штрафных минут!")
         await msg.answer("Правильный ответ - памятник Софийскому полку!")
         await start_4_task(msg, state)
         return
     await state.update_data(tries=tries - 1)
     await state.update_data(start_time=start_time - datetime.timedelta(minutes=5))
-    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а)")
+    await msg.answer(f"Неверно! Попробуй ещё раз, у тебя осталось {tries} попытки(а). Кстати, тебе начислилось 5 штрафных минут")
     await msg.answer_sticker(consts.GUIDES_DICT["sis2false"])
 
 
@@ -133,8 +135,10 @@ async def end_quest(msg: Message, state: FSMContext):
         """Вот и подошел к концу наш замечательный и увлекательный квест! Я очень рада была провести с вами время! Надеюсь, что вы узнали что-то новое! Вы можете пройти и другие квесты!""",
         reply_markup=keyboards.last_kb())
     start_time = (await state.get_data())["start_time"]
+    scoring_time = round((datetime.datetime.now() - start_time).seconds / 60, 2)
+    db.update_score(msg.from_user.id, scoring_time)
     await msg.answer(
-        f"Ты потратил на квест {(datetime.datetime.now() - start_time).seconds / 60:.2f} минут (с учётом штрафного времени за ошибки) и заслужил подарок!",
+        f"Ты потратил на квест {scoring_time} минут (с учётом штрафного времени за ошибки) и заслужил подарок!",
         reply_markup=keyboards.get_stickers_kb())
     await msg.answer_sticker(consts.GUIDES_DICT["sis2true"])
     await state.set_state(QuestsStates.quest1_ending)

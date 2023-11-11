@@ -3,7 +3,6 @@
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 import consts
-import emoji
 
 
 def create_start_kb():
@@ -16,7 +15,8 @@ def setting_quest_kb():
     builder = ReplyKeyboardBuilder()
     for i in consts.QUESTS:
         builder.add(KeyboardButton(text=i))
-    builder.adjust(3)
+    builder.adjust(2)
+    builder.row(KeyboardButton(text="Рейтинг команд"))
     builder.row(KeyboardButton(text="Назад"))
     return builder.as_markup(resize_keyboard=True)
 
@@ -25,7 +25,7 @@ def setting_history_kb():
     builder = ReplyKeyboardBuilder()
     for i in consts.HISTORIES:
         builder.add(KeyboardButton(text=i))
-    builder.adjust(3)
+    builder.adjust(2)
     builder.row(KeyboardButton(text="Назад"))
     return builder.as_markup(resize_keyboard=True)
 
@@ -81,8 +81,7 @@ def done_kb():
 
 def get_stickers_kb():
     builder = InlineKeyboardBuilder()
-    builder.add(InlineKeyboardButton(text="emoji.emojize(':check_mark_button:') Забрать подарок emoji.emojize("
-                                          "':check_mark_button:')", url="https://t.me/addstickers/Smolensks"))
+    builder.add(InlineKeyboardButton(text="Забрать подарок", url="https://t.me/addstickers/Smolensks"))
     return builder.as_markup()
 
 
@@ -92,9 +91,3 @@ def payments_kb():
                                      url="https://www.sberbank.com/sms/pbpn?requisiteNumber=79525302125"))
     return builder.as_markup()
 
-
-def payments_kb():
-    builder = InlineKeyboardBuilder()
-    builder.add(InlineKeyboardButton(text="Поддержать автора",
-                                     url="https://www.sberbank.com/sms/pbpn?requisiteNumber=79525302125"))
-    return builder.as_markup()

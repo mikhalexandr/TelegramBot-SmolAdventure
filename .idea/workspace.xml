@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7686d9-8f16-4ec6-932c-633e249ef72f" name="Changes" comment="мяу">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/base.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/history_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/history_texts.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_texts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/quest1_handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/quest1_handlers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/quest2_handlers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/quest3_handlers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/quests_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/quests_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,14 +32,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/mnene/Documents/GitHub/itcubikiprojectsmolaton/main.py"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mnene\Documents\GitHub\itcubikiprojectsmolaton\handlers\quests_handlers" />
+      <recent name="C:\Users\mnene\Documents\GitHub\itcubikiprojectsmolaton\handlers\histories" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="itcubikiprojectsmolaton" />
@@ -40,10 +58,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Alex\AppData\Local\Programs\Python\Python311\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
@@ -161,6 +178,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="мяу" />
-    <option name="LAST_COMMIT_MESSAGE" value="мяу" />
+    <MESSAGE value="aaa" />
+    <option name="LAST_COMMIT_MESSAGE" value="aaa" />
   </component>
 </project>

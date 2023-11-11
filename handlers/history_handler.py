@@ -17,7 +17,7 @@ router = Router()
 @router.message(HistoryStates.setting_history, F.text == "Назад")
 async def escape_to_menu(msg: Message, state: FSMContext):
     await state.clear()
-    await msg.answer("Сделайте выбор...", reply_markup=keyboards.create_start_kb())
+    await msg.answer("Выберите действие", reply_markup=keyboards.create_start_kb())
 
 
 @router.message(HistoryStates.setting_history, F.text.in_(consts.HISTORIES))
