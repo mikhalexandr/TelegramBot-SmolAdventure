@@ -30,6 +30,11 @@ async def quests(msg: Message, state: FSMContext):
     await state.set_state(states.QuestsStates.setting_quest)
 
 
+@router.message(F.text == "Поддержать автора")
+async def payment(msg: Message):
+    await msg.answer("Нажмите на кнопку ниже, чтобы поддержать автора", reply_markup=keyboards.payments_kb())
+
+
 @router.message(Command("help"))
 async def help_msg(msg: Message):
     await msg.answer(consts.get_help_message())

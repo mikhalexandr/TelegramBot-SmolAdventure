@@ -6,8 +6,9 @@ import consts
 
 
 def create_start_kb():
-    kb = [KeyboardButton(text="История Смоленска"), KeyboardButton(text="Квесты")]
-    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+    kb = [[KeyboardButton(text="История Смоленска"), KeyboardButton(text="Квесты")],
+          [KeyboardButton(text="Поддержать автора")]]
+    return ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
 
 
 def setting_quest_kb():
@@ -80,4 +81,11 @@ def done_kb():
 def get_stickers_kb():
     builder = InlineKeyboardBuilder()
     builder.add(InlineKeyboardButton(text="Забрать подарок", url="https://t.me/addstickers/Smolensks"))
+    return builder.as_markup()
+
+
+def payments_kb():
+    builder = InlineKeyboardBuilder()
+    builder.add(InlineKeyboardButton(text="Поддержать автора",
+                                     url="https://www.sberbank.com/sms/pbpn?requisiteNumber=79525302125"))
     return builder.as_markup()
