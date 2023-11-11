@@ -27,7 +27,3 @@ class QuestsStates(StatesGroup):
     task4_quest1_waiting = State()
     task4_quest1_answering = State()
     quest1_ending = State()
-
-    preparing_for_quest2 = State()
-
-    preparing_for_quest3 = State()
