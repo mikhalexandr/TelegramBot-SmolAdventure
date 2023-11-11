@@ -67,3 +67,8 @@ def last_kb():
     return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
 
 
+def escape_kb():
+    kb = [KeyboardButton(text="Назад")]
+    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+

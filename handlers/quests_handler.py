@@ -26,10 +26,19 @@ async def setting_quest(msg: Message, state: FSMContext):
     await state.set_state(QuestsStates.setting_team)
 
 
+@router.message(QuestsStates.adding_to_team, F.text == "Назад")
+@router.message(QuestsStates.creating_team_name, F.text == "Назад")
+async def return_to_team_menu(msg: Message, state: FSMContext):
+    await msg.answer(
+        f"Выбран квест {consts.QUESTS[(await state.get_data())['quest'] - 1]}! Теперь присоединись к команде или создай новую",
+        reply_markup=keyboards.set_team_kb())
+    await state.set_state(QuestsStates.setting_team)
+
+
 @router.message(QuestsStates.setting_team, F.text == "Создать команду")
 async def create_team(msg: Message, state: FSMContext):
     await state.set_state(QuestsStates.creating_team_name)
-    await msg.answer("Пожалуйста, введи имя своей команды", reply_markup=keyboards.ReplyKeyboardRemove())
+    await msg.answer("Пожалуйста, введи имя своей команды", reply_markup=keyboards.escape_kb())
 
 
 @router.message(QuestsStates.creating_team_name)
@@ -40,7 +49,7 @@ async def create_team_and_prepare(msg: Message, state: FSMContext):
         db.add_team_member(msg.from_user.id, msg.from_user.username, msg.text)
         await state.set_state(QuestsStates.preparing_for_quest)
         await msg.answer(
-            f"Команда {msg.text} успешно создана! Как только все друзья присоединяться, нажми Начать квест",
+            f"Команда {msg.text} успешно создана! Для начала приключения нажми Начать квест",
             reply_markup=keyboards.preparing_for_quest_kb())
 
 
@@ -48,7 +57,7 @@ async def create_team_and_prepare(msg: Message, state: FSMContext):
 async def add_to_team(msg: Message, state: FSMContext):
     await state.set_state(QuestsStates.adding_to_team)
     await msg.answer("Пожалуйста, введи имя команды, к которой хочешь присоединиться",
-                     reply_markup=keyboards.ReplyKeyboardRemove())
+                     reply_markup=keyboards.escape_kb())
 
 
 @router.message(QuestsStates.adding_to_team)
@@ -67,3 +76,11 @@ async def escape_to_team_menu(msg: Message, state: FSMContext):
     await msg.answer("Пожалуйста, выбери квест", reply_markup=keyboards.setting_quest_kb())
     await state.set_state(QuestsStates.setting_quest)
 
+
+@router.message(QuestsStates.adding_to_team, F.text == "Назад")
+@router.message(QuestsStates.creating_team_name, F.text == "Назад")
+async def return_to_team_menu(msg: Message, state: FSMContext):
+    await msg.answer(
+        f"Выбран квест {consts.QUESTS[(await state.get_data())['quest'] - 1]}! Теперь присоединись к команде или создай новую",
+        reply_markup=keyboards.set_team_kb())
+    await state.set_state(QuestsStates.setting_team)
