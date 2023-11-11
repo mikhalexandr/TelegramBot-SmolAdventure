@@ -3,11 +3,11 @@
 from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-import datetime
 import keyboards
 from states import QuestsStates
 import consts
 import db
+from handlers import quest1_content
 
 router = Router()
 
@@ -80,12 +80,10 @@ async def escape_to_team_menu(msg: Message, state: FSMContext):
 
 @router.message(QuestsStates.preparing_for_quest, F.text == "Начать квест")
 async def start_quest(msg: Message, state: FSMContext):
-    start = datetime.datetime.now()
-    await state.update_data(start_time=start)
-    await msg.answer("""Уважаемые гости!
-Добро пожаловать в увлекательную экскурсию по памятникам Смоленска, посвященным великой эпохе 1812 года! Сегодня мы отправимся в путешествие во времени, чтобы погрузиться в историю и открыть для себя места, связанные с этим важным периодом в истории России.
-В нашей экскурсии мы будем исследовать памятники, которые воздвигнуты в честь героической обороны Смоленска и подвигов, совершенных во время Отечественной войны 1812 года. Каждый из этих памятников является символом мужества, силы духа и патриотизма наших предков.
-""")
-    await msg.answer("Для начала квеста придите к Монументу Защитникам Смоленска.", reply_markup=keyboards.done_kb())
-    await msg.answer_sticker(consts.GUIDES_DICT["sis2hello"])
+    await eval(f"quest{(await state.get_data())['quest']}_content.start_message(msg, state)")
     await state.set_state(QuestsStates.reading_quest)
+
+
+@router.message(QuestsStates.reading_quest, F.text == "Сделано!")
+async def send_task(msg: Message, state: FSMContext):
+    await msg.answer("Квес идёт если че")
