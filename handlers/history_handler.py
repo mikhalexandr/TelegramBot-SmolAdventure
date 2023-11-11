@@ -24,7 +24,7 @@ async def escape_to_menu(msg: Message, state: FSMContext):
 async def setting_history(msg: Message, state: FSMContext):
     num = consts.HISTORIES.index(msg.text) + 1
     await state.update_data(history=num)
-    await msg.answer(f"Выбрано {msg.text}. Для старта нажмите Начать",
+    await msg.answer(f"Выбрано: {msg.text}. Для старта нажмите Начать",
                      reply_markup=keyboards.preparing_for_history_kb())
     await state.set_state(HistoryStates.preparing_for_history)
 
@@ -49,12 +49,15 @@ async def next_information(msg: Message, state: FSMContext):
             await msg.answer_photo(img, caption=next(text), reply_markup=keyboards.next_kb())
     except StopIteration:
         await msg.answer("Рассказ завершен. Пожалуйста, пройди тест!", reply_markup=keyboards.lets_go_kb())
+        await msg.answer_sticker(consts.GUIDES_DICT["sis1hm"])
         await state.set_state(HistoryStates.quiz_passing_preparing)
 
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")
 async def escape_to_history_menu(msg: Message, state: FSMContext):
-    await msg.answer("Пожалуйста, выбери предмет изучения", reply_markup=keyboards.setting_history_kb())
+    await msg.answer("Привет-привет, я Катя, пожалуйста, выбери нашего земляка, о котором хочешь узнать побольше",
+                     reply_markup=keyboards.setting_history_kb())
+    await msg.answer_sticker(consts.GUIDES_DICT["sis1hello"])
     await state.set_state(HistoryStates.setting_history)
 
 
@@ -88,6 +91,7 @@ async def next_quiz_question(msg: Message, state: FSMContext):
             text += s
         text = text[:10] + f" {score * 10}%" + text[10:]
         await msg.answer(text, reply_markup=keyboards.last_kb())
+        await msg.answer_sticker(consts.GUIDES_DICT["sis1true"] if score > 5 else consts.GUIDES_DICT["sis1false"])
         await state.set_state(HistoryStates.quiz_ending)
 
 
@@ -98,4 +102,3 @@ async def check_answer(msg: Message, state: FSMContext):
     sp.append((ans, msg.text))
     await state.update_data(answers=sp)
     await next_quiz_question(msg, state)
-
