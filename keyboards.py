@@ -1,7 +1,7 @@
 # клавиатуры
 
-from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 import consts
 
 
@@ -77,3 +77,7 @@ def done_kb():
     return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
 
 
+def get_stickers_kb():
+    builder = InlineKeyboardBuilder()
+    builder.add(InlineKeyboardButton(text="Забрать подарок", url="https://t.me/addstickers/Smolensks"))
+    return builder.as_markup()

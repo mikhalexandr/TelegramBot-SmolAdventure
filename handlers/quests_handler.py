@@ -7,11 +7,13 @@ import keyboards
 from states import QuestsStates
 import consts
 import db
-from handlers import quest1_content
+from handlers import quest1_handlers, quest2_handlers, quest3_handlers
 
 router = Router()
+router.include_routers(quest1_handlers.router, quest2_handlers.router, quest3_handlers.router)
 
 
+@router.message(QuestsStates.quest1_ending, F.text == "Завершить!")
 @router.message(QuestsStates.setting_quest, F.text == "Назад")
 async def escape_to_menu(msg: Message, state: FSMContext):
     await state.clear()
@@ -48,7 +50,7 @@ async def create_team_and_prepare(msg: Message, state: FSMContext):
         await msg.answer("К сожалению, такая команда уже сушествует! Пожалуйста, введи другое имя")
     else:
         db.add_team_member(msg.from_user.id, msg.from_user.username, msg.text)
-        await state.set_state(QuestsStates.preparing_for_quest)
+        await state.set_state(eval(f"QuestsStates.preparing_for_quest{(await state.get_data())['quest']}"))
         await msg.answer(
             f"Команда {msg.text} успешно создана! Для начала приключения нажми Начать квест",
             reply_markup=keyboards.preparing_for_quest_kb())
@@ -67,7 +69,7 @@ async def add_to_team_and_prepare(msg: Message, state: FSMContext):
         await msg.answer(
             "К сожалению, такой команды не существует. Пожалуйста, введи уже сущетсвующую команду или создай новую")
     else:
-        await state.set_state(QuestsStates.preparing_for_quest)
+        await state.set_state(eval(f"QuestsStates.preparing_for_quest{(await state.get_data())['quest']}"))
         await msg.answer(f"Ты успешно присоединился к команде {msg.text}. Нажми Начать квест, чтобы начать квест",
                          reply_markup=keyboards.preparing_for_quest_kb())
 
@@ -77,13 +79,3 @@ async def escape_to_team_menu(msg: Message, state: FSMContext):
     await msg.answer("Пожалуйста, выбери квест", reply_markup=keyboards.setting_quest_kb())
     await state.set_state(QuestsStates.setting_quest)
 
-
-@router.message(QuestsStates.preparing_for_quest, F.text == "Начать квест")
-async def start_quest(msg: Message, state: FSMContext):
-    await eval(f"quest{(await state.get_data())['quest']}_content.start_message(msg, state)")
-    await state.set_state(QuestsStates.reading_quest)
-
-
-@router.message(QuestsStates.reading_quest, F.text == "Сделано!")
-async def send_task(msg: Message, state: FSMContext):
-    await msg.answer("Квес идёт если че")

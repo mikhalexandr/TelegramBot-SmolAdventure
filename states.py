@@ -17,6 +17,17 @@ class QuestsStates(StatesGroup):
     setting_team = State()
     creating_team_name = State()
     adding_to_team = State()
-    preparing_for_quest = State()
-    reading_quest = State()
-    answering_quest = State()
+
+    preparing_for_quest1 = State()
+    task1_quest1_waiting = State()
+    task1_quest1_answering = State()
+    task2_quest1_waiting = State()
+    task2_quest1_answering = State()
+    task3_quest1_answering = State()
+    task4_quest1_waiting = State()
+    task4_quest1_answering = State()
+    quest1_ending = State()
+
+    preparing_for_quest2 = State()
+
+    preparing_for_quest3 = State()
