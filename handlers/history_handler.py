@@ -8,15 +8,9 @@ from states import HistoryStates
 import consts
 import emoji
 from handlers.history_texts import *
-from handlers.history_images import images1
+from handlers.history_images import *
 
 router = Router()
-
-
-@router.message(F.photo)
-async def f(msg: Message):
-    id = msg.photo[-1].file_id
-    print(id)
 
 
 @router.message(HistoryStates.quiz_ending, F.text == "Завершить!")
@@ -39,7 +33,7 @@ async def setting_history(msg: Message, state: FSMContext):
 async def start_history(msg: Message, state: FSMContext):
     num = (await state.get_data())['history']
     await state.set_state(HistoryStates.history_passing)
-    await state.update_data(text=iter(eval(f"text{num}")))
+    await state.update_data(text=iter(eval(f"text{num}")), imgs=iter(eval(f"images{num}")))
     await next_information(msg, state)
 
 
@@ -47,7 +41,12 @@ async def start_history(msg: Message, state: FSMContext):
 async def next_information(msg: Message, state: FSMContext):
     try:
         text = (await state.get_data())["text"]
-        await msg.answer(next(text), reply_markup=keyboards.next_kb())
+        imgs = (await state.get_data())["imgs"]
+        img = next(imgs)
+        if not img:
+            await msg.answer(next(text), reply_markup=keyboards.next_kb())
+        else:
+            await msg.answer_photo(img, caption=next(text), reply_markup=keyboards.next_kb())
     except StopIteration:
         await msg.answer("Рассказ завершен. Пожалуйста, пройди тест!", reply_markup=keyboards.lets_go_kb())
         await state.set_state(HistoryStates.quiz_passing_preparing)
