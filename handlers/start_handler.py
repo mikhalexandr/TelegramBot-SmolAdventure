@@ -35,9 +35,9 @@ async def payment(msg: Message):
     await msg.answer("Нажмите на кнопку ниже, чтобы поддержать автора", reply_markup=keyboards.payments_kb())
 
 
-@router.message(Command("help"))
+@router.message(Command("info"))
 async def help_msg(msg: Message):
-    await msg.answer(consts.get_help_message())
+    await msg.answer(consts.INFO_MASSAGE)
 
 
 @router.message()
