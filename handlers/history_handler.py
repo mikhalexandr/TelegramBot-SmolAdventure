@@ -55,7 +55,7 @@ async def next_information(msg: Message, state: FSMContext):
 
 @router.message(HistoryStates.preparing_for_history, F.text == "Назад")
 async def escape_to_history_menu(msg: Message, state: FSMContext):
-    await msg.answer("Привет-привет, я Катя, пожалуйста, выбери нашего земляка, о котором хочешь узнать побольше",
+    await msg.answer("Привет-привет, я Катя, пожалуйста, выбери нашего земляка, о котором хочешь узнать побольше!",
                      reply_markup=keyboards.setting_history_kb())
     await msg.answer_sticker(consts.GUIDES_DICT["sis1hello"])
     await state.set_state(HistoryStates.setting_history)
