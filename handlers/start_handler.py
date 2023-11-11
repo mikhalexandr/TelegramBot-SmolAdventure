@@ -30,9 +30,9 @@ async def quests(msg: Message, state: FSMContext):
     await state.set_state(states.QuestsStates.setting_quest)
 
 
-@router.message(Command("help"))
+@router.message(Command("info"))
 async def help_msg(msg: Message):
-    await msg.answer(consts.get_help_message())
+    await msg.answer(consts.INFO_MASSAGE)
 
 
 @router.message()
