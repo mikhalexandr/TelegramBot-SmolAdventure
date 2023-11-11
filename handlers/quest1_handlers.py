@@ -5,6 +5,7 @@ import datetime
 import keyboards
 from states import QuestsStates
 import consts
+import emoji
 import db
 
 sv1 = "AgACAgIAAxkBAAIb9WVPB57vdNmrFHe-KaRT1qgSsON-AAI1yjEb-qt5SiYZiIzqhf2QAQADAgADeQADMwQ"

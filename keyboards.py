@@ -3,6 +3,7 @@
 from aiogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, InlineKeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 import consts
+import emoji
 
 
 def create_start_kb():
@@ -80,7 +81,8 @@ def done_kb():
 
 def get_stickers_kb():
     builder = InlineKeyboardBuilder()
-    builder.add(InlineKeyboardButton(text="Забрать подарок", url="https://t.me/addstickers/Smolensks"))
+    builder.add(InlineKeyboardButton(text="emoji.emojize(':check_mark_button:') Забрать подарок emoji.emojize("
+                                          "':check_mark_button:')", url="https://t.me/addstickers/Smolensks"))
     return builder.as_markup()
 
 
