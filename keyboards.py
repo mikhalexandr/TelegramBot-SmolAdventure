@@ -72,3 +72,8 @@ def escape_kb():
     return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
 
 
+def done_kb():
+    kb = [KeyboardButton(text="Сделано!")]
+    return ReplyKeyboardMarkup(keyboard=[kb], resize_keyboard=True)
+
+
