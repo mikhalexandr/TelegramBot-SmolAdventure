@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f7686d9-8f16-4ec6-932c-633e249ef72f" name="Changes" comment="мяу">
+      <change beforePath="$PROJECT_DIR$/.idea/itcubikiprojectsmolaton.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/itcubikiprojectsmolaton.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/base.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/history_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/history_texts.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/history_texts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/quest1_handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/quest1_handlers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/quest2_handlers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/quest3_handlers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/quests_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/quests_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +27,25 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2YZcoq8QW8rMEp6kYaNYUbevXE1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/mnene/Documents/GitHub/itcubikiprojectsmolaton/main.py"
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mnene/Documents/GitHub/itcubikiprojectsmolaton/main.py&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mnene\Documents\GitHub\itcubikiprojectsmolaton\handlers\quests_handlers" />
@@ -73,6 +75,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="мяу">
       <option name="closed" value="true" />
@@ -161,6 +164,13 @@
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
       <updated>1699682011703</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6f7686d9-8f16-4ec6-932c-633e249ef72f" name="Changes" comment="мяу" />
+      <created>1700736719890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700736719890</updated>
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
